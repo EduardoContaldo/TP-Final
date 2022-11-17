@@ -1,39 +1,71 @@
-# Trabalho Prático Final: Internet Banking & Persistência
+# Trabalho Prático Final
 
-**Valor: 25 pontos**
+**Até quatro integrantes**
 
-**No Integrantes: 2**
+**Data de apresentação: 15/12/2022**
 
-O objetivo principal deste trabalho consiste em complementar os mecanismos de persistência para salvar as informações do Internet Banking como um todo.
-Para isso, implemente as seguintes soluções abaixo.
+**Valor: 20 pontos**
 
-## 01. Main.java
+## Trabalho Integrador
 
-Você deverá implementar um arquivo chamado `Main.java` que conterá um menu para acesso as principais funções do sistema.
-Especificamente, este menu deverá permitir ao usuário:
+O objetivo deste trabalho integrador consiste utilizar os conceitos vistos em Programação Orientada a Objetos para desenvolver um sistema que faça o armazenamento e leitura de informações a nível de banco de dados.
 
-1. Criar nova conta: Deverá permitir a criação de uma nova conta bancária. Os dados deverão ser fornecidos durante o procedimento de cadastro.
-2. Login como cliente: Realizar login em uma conta bancária de um cliente.
-   1. Depósito: Depositar um determinado valor na conta
-   2. Saque: Retirar um determinado valor da conta
-   3. Transferência: Transferir um determinado valor desta conta para outra a ser fornecida.
-   4. Excluir conta: Excluir a conta do cliente
-   5. logout
-3. Login como administrador: Logar como admin utilizando as seguintes credenciais: login (`admin`), senha (`ib2021!`)
-   1. Criar nova agência: Criar uma nova agência
-   2. Excluir agência: Excluir uma agência existente. Atenção: também deverão ser excluídas as contas relacionadas a essa agência.
-   3. logout
-4. Sair
+Seu grupo deverá selecionar um dos temas propostos no trabalho de banco de dados e implementar as funcionalidades/requisitos listados.
 
-## 02. Persistência dos dados
+## Avaliação
 
-Você deverá estender os mecanismos de persistência existentes para que todas as ações e dados gerados durante a utilização do sistema do Internet Banking sejam persistidos e, portanto, recuperados durante sua inicialização.
-Especificamente, você deverá implementar rotinas para salvar os dados de toda nova conta criada, quando o usuário realizar logout da conta, e quando for necessário sair do programa.
+Seu grupo será avaliado com base nos seguintes critérios:
 
-Você pode utilizar o método de armazenamento que considerar mais conveniente, porém é recomendado o uso de serialização.
-Nesse caso, você deverá salvar os dados de cada conta em um arquivo separado, dentro de uma pasta `db/contas/`.
-O mesmo deve ser feito para agências, porém elas serão salvas dentro do diretório `db/agencias/`.
+- Implementação das seguintes funcionalidades:
+   - CRUD de dois tipos de dados
+   - Cadastro & login de usuários
+   - Listagem/relatório de algum tipo de dado
+- Uso dos mecanismos de tratamento de exceção
+- Implementação de classes modelo para representação dos dados
+- Implementação de DAOs para comunicação com banco de dados
+- Implementação de classes responsáveis pela interface gráfica do programa
+- Uso de collections para manipular conjunto de dados
+- Uso dos mecanismos de Herança/Polimorfismo ao longo da implementação do sistema
 
-## Forma de entrega
+## Cronograma
 
-O trabalho deverá ser entregue por meio de um pull request. Ainda, um vídeo (ou relatório) deverá ser gravado para demonstrar as funcionalidades que foram efetivamente implementadas, bem como descrever as dificuldades encontradas (e soluções adotadas para superá-las), e as limitações que impediram a implementação de alguma funcionalidade do trabalho (se houver).
+Esse é o primeiro sistema de informação que vocês estão desenvolvendo.
+Ele é de média/grande complexidade e multidisciplinar.
+Portanto, é indispensável planejamento e disciplina na sua implementação.
+Nós teremos seis aulas até apresentação final (~23hrs de aula!), e é de suma importância que esse tempo seja aproveitado o máximo possível.
+O cronograma abaixo é apenas um planejamento de como eu me organizaria para implementar o trabalho, entendam como sugestão.
+
+- 17/11: CRUD+Relatório: decidir quais dados serão implementados e exibidos; Login: protótipo interface gráfica + modelo
+- 24/11: Login: implementação e teste; CRUD#1: protótipo das interfaces gráficas + modelo
+- 01/12: CRUD#1: implementação e teste; CRUD#2: protótipo das interfaces gráficas + modelo
+- 02/12: CRUD#2: implementação e teste; Relatório: protótipo da interface gráfica + obtenção dos dados (início)
+- 08/12: Relatório: obtenção dos dados (fim); Teste Geral
+- 15/12: Apresentação do trabalho completo
+
+## Algumas dicas
+
+Algumas sugestões para auxiliá-los na organização e implementação do trabalho.
+
+**Não deixe para testar o trabalho apenas no final.** 
+Você sempre precisará ajustar o código que você escreveu para resolver bugs e/ou lidar com situações que você não havia planejado.
+Se você deixar para testar o sistema somente no final, você irá terá muito pouco tempo para fazer esses ajustes.
+Minha sugestão: vá implementando o sistema por funcionalidade.
+Isto é, implemente uma funcionalidade por completo (GUI + funcionalidade + BD) e teste.
+Funcionou? excelente, parta para a próxima; não funcionou? corrija o bug e teste novamente!
+
+**Divida as tarefas entre os integrantes do grupo.**
+Aqui vale o lema "Dividir para Conquistar".
+O trabalho tem diversas funcionalidades, e cada funcionalidade deve ser implementada em diversos níveis (interface, banco de dados, etc).
+Divida a carga de trabalho entre o grupo de forma que consigam trabalhar em paralelo.
+Minha sugestão: (a) Organizem o sistema em tarefas, e trabalhem nas que não possuem (ou possuem pouca) dependência entre si; (b) priorizem a definição das interfaces (métodos & funções) das classes/módulos que vocês irão implementar.
+Dessa forma evitarão conflitos e conseguirão trabalhar em paralelo com mais facilidade.
+
+**Se atenha ao que foi planejado.**
+Lembre-se do princípio de Pareto: *Gasta-se 20% do tempo para implementar 80% do sistema, e 80% do tempo para implementar os restantes 20% do sistema.*
+Os detalhes importam, e fazem muita diferença no final; você irá corrigir muitos bugs e tratar muitos problemas não planejados (veja a dica anterior).
+**Portanto, NÃO INVENTE!**
+Sua prioridade é implementar o que foi pedido no trabalho.
+Implemente funcionalidade extras somente se tiver garantia de ter concluído o que foi pedido.
+
+
+
