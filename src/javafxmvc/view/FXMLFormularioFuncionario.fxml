@@ -12,7 +12,11 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmvc.controller.ControllerFormularioFuncionario">
    <children>
-      <Button fx:id="buttonConfirmar" layoutX="166.0" layoutY="160.0" mnemonicParsing="false" onAction="#confirmarAlteracao" text="Confirmar" AnchorPane.bottomAnchor="35.0" />
+      <Label layoutX="174.0" layoutY="23.0" text="Funcionário">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <GridPane layoutX="99.0" layoutY="55.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="70.0" />
@@ -27,18 +31,14 @@
          <children>
             <Label text="Nome:" />
             <Label text="Sobrenome:" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboBoxFuncoes" onAction="#selecionarItemComboBoxFuncoes" prefHeight="25.0" prefWidth="136.0" promptText="Função" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Função:" GridPane.rowIndex="3" />
+            <Label text="Usuário:" GridPane.rowIndex="2" />
             <TextField fx:id="textFieldNomeFuncionario" GridPane.columnIndex="1" />
             <TextField fx:id="textFieldSobreNomeFuncionario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Usuário:" GridPane.rowIndex="2" />
             <TextField fx:id="textFieldUsuarioFuncionario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBoxFuncoes" onAction="#selecionarItemComboBoxFuncoes" prefHeight="25.0" prefWidth="136.0" promptText="Função" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Função:" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="174.0" layoutY="23.0" text="Funcionário">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Button fx:id="buttonConfirmar" layoutX="166.0" layoutY="160.0" mnemonicParsing="false" onAction="#confirmarAlteracao" text="Confirmar" AnchorPane.bottomAnchor="35.0" />
    </children>
 </AnchorPane>

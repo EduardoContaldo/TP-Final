@@ -1,5 +1,6 @@
 package javafxmvc.model.dao;
 
+import javafx.scene.control.Alert;
 import javafxmvc.model.domain.Marca;
 import javafxmvc.model.domain.Produto;
 
@@ -29,6 +30,7 @@ public class MarcaDAO {
             stmt.execute();
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
@@ -36,12 +38,13 @@ public class MarcaDAO {
     public boolean alterar(Marca marca) {
         String sql = "UPDATE marca SET nome_marca=? WHERE id_marca=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setString(1, marca.getNomeMarca());
             stmt.setDouble(2, marca.getIdMarca());
             stmt.execute();
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
@@ -49,11 +52,12 @@ public class MarcaDAO {
     public boolean remover(Marca marca) {
         String sql = "DELETE FROM marca WHERE id_marca=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, marca.getIdMarca());
             stmt.execute();
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
@@ -63,7 +67,7 @@ public class MarcaDAO {
         List<Marca> retorno = new ArrayList<>();
 
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Marca marca = new Marca();
@@ -72,7 +76,7 @@ public class MarcaDAO {
                 retorno.add(marca);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar produtos");
+
         }
         return retorno;
     }
@@ -81,15 +85,15 @@ public class MarcaDAO {
         String query = "SELECT nome_marca FROM marca WHERE id_marca=?";
         Marca retorno = new Marca();
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, marca.getIdMarca());
             ResultSet resultado = stmt.executeQuery();
             if (resultado.next()) {
-                marca.setNomeMarca(resultado.getString("id_produto"));
+                marca.setNomeMarca(resultado.getString("nome_marca"));
                 retorno = marca;
             }
         } catch (SQLException e) {
-            System.out.println("Marca não encontrado");
+
         }
         return retorno;
     }
@@ -97,7 +101,7 @@ public class MarcaDAO {
     public boolean verificarMarca(Marca marca){
         String query = "SELECT COUNT(nome_marca) AS confirmar FROM marca WHERE nome_marca=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, marca.getNomeMarca());
             ResultSet resultado = stmt.executeQuery();
             int retorno = 1;

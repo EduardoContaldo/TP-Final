@@ -50,7 +50,6 @@ public class ControllerRelatorioFluxoProduto implements Initializable {
         this.tableColumnProduto.setCellValueFactory(new PropertyValueFactory<>("nomeProduto"));
         this.tableColumnMarca.setCellValueFactory(new PropertyValueFactory<>("nomeMarca"));
         this.tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-        this.tableColumnFuncionario.setCellValueFactory(new PropertyValueFactory<>("nomeFuncionario"));
         this.tableColumnData.setCellValueFactory(new PropertyValueFactory<>("data"));
 
         this.listProdutos = this.movimentacaoDAO.listar();
@@ -58,4 +57,5 @@ public class ControllerRelatorioFluxoProduto implements Initializable {
         this.observableListProdutos = FXCollections.observableArrayList(this.listProdutos);
         this.tableViewFluxoProduto.setItems(this.observableListProdutos);
     }
+
 }

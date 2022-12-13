@@ -87,7 +87,11 @@ public class ControllerMenuFuncionario implements Initializable {
                 Optional<ButtonType> resultado = alert.showAndWait();
 
                 if(resultado.get() == ButtonType.OK) {
-                    funcionarioDAO.remover(funcionario);
+                    if(!funcionarioDAO.remover(funcionario)){
+                        alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("Não foi possível remover o funcionário!");
+                        alert.showAndWait();
+                    }
                     carregarTableViewFuncionario();
                 }
             }
@@ -104,7 +108,11 @@ public class ControllerMenuFuncionario implements Initializable {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, funcionario, "alterar");
             if (confirmacao) {
                 this.funcionarioDAO.setConnection(this.connection);
-                this.funcionarioDAO.alterar(funcionario);
+                if(!this.funcionarioDAO.alterar(funcionario)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível alterar o funcionário!");
+                    alert.showAndWait();
+                }
                 carregarTableViewFuncionario();
             }
         }

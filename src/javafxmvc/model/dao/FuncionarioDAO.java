@@ -1,5 +1,6 @@
 package javafxmvc.model.dao;
 
+import javafx.scene.control.Alert;
 import javafxmvc.model.domain.Funcionario;
 
 import java.math.BigInteger;
@@ -41,7 +42,9 @@ public class FuncionarioDAO {
                 retorno = funcionario;
             }
         } catch (SQLException ex) {
-            System.out.println("Usuario não encontrado");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Não foi possível realizar o login!");
+            alert.showAndWait();
         }
         return retorno;
     }
@@ -74,6 +77,7 @@ public class FuncionarioDAO {
             }
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
@@ -96,6 +100,7 @@ public class FuncionarioDAO {
 
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -110,6 +115,7 @@ public class FuncionarioDAO {
 
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -124,6 +130,7 @@ public class FuncionarioDAO {
 
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -142,6 +149,7 @@ public class FuncionarioDAO {
 
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -165,7 +173,7 @@ public class FuncionarioDAO {
                 retorno.add(funcionario);
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao listar funcionarios");
+
         }
         return retorno;
     }
@@ -191,6 +199,18 @@ public class FuncionarioDAO {
         }
     }
 
+    public void inserirHistorico(Funcionario funcionario) {
+        String query = "insert into historico_login(id_usuario) value (?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, funcionario.getIdUsuario());
+            stmt.execute();
+        }
+        catch (SQLException ex) {
+
+        }
+    }
+
     public static String getHashMd5(String value) {
         MessageDigest md;
         try {
@@ -201,6 +221,5 @@ public class FuncionarioDAO {
         BigInteger hash = new BigInteger(1, md.digest(value.getBytes()));
         return hash.toString(16);
     }
-
 
 }

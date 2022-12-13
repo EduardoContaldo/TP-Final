@@ -12,7 +12,11 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmvc.controller.ControllerFormularioProduto">
    <children>
-      <Button fx:id="buttonConfirmar" layoutX="166.0" layoutY="160.0" mnemonicParsing="false" onAction="#confirmarAlteracao" text="Confirmar" />
+      <Label layoutX="174.0" layoutY="23.0" text="Produto">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <GridPane layoutX="99.0" layoutY="55.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="57.0" />
@@ -26,16 +30,12 @@
          <children>
             <Label text="Nome:" />
             <Label text="Preço:" GridPane.rowIndex="1" />
-            <ComboBox fx:id="comboBoxMarcaProduto" onAction="#selecionarItemComboBoxMarcas" prefHeight="25.0" prefWidth="136.0" promptText="Marca" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Marca:" GridPane.rowIndex="2" />
             <TextField fx:id="textFieldNomeProduto" GridPane.columnIndex="1" />
             <TextField fx:id="textFieldPrecoProduto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBoxMarcaProduto" onAction="#selecionarItemComboBoxMarcas" prefHeight="25.0" prefWidth="136.0" promptText="Marca" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Label layoutX="174.0" layoutY="23.0" text="Produto">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Button fx:id="buttonConfirmar" layoutX="166.0" layoutY="160.0" mnemonicParsing="false" onAction="#confirmarAlteracao" text="Confirmar" />
    </children>
 </AnchorPane>

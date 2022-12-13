@@ -74,8 +74,9 @@ public class ControllerLogin {
             this.labelResultado.setText("Usuário e/ou senha incorreto(s)");
         }
         else{
+            this.funcionarioDAO.inserirHistorico(this.funcionarioLogado);
             this.menuController = new ControllerMenuPrincipal();
-            this.menuController.redirectMenu(stage, funcionarioLogado);
+            this.menuController.redirectMenu(this.stage, this.funcionarioLogado);
         }
     }
 }

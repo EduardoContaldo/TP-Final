@@ -18,7 +18,8 @@ public class DatabaseMySQL{
         } catch(ClassNotFoundException | SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Não foi possível realizar a conexão com o banco de dados!");
-            alert.show();
+            alert.showAndWait();
+            System.exit(1);
         }
         return null;
     }

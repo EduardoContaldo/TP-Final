@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
@@ -47,6 +48,8 @@ public class ControllerMenuPrincipal {
     private Parent parent;
     private Scene scene;
     private Stage stage;
+
+    private ControllerLogin loginController;
 
     //Atributos para manipulação de Banco de Dados
     private final DatabaseMySQL database = new DatabaseMySQL();
@@ -104,8 +107,10 @@ public class ControllerMenuPrincipal {
 
     @FXML
     public void exibirRelatorioFluxoProduto() throws IOException {
-        AnchorPane a = FXMLLoader.load(getClass().getResource("/javafxmvc/view/FXMLRelatorioFluxoProduto.fxml"));
-        this.anchorPane.getChildren().setAll(a);
+        if(ControllerMenuPrincipal.usuario.getIdFuncao() == 1 || ControllerMenuPrincipal.usuario.getIdFuncao() == 2) {
+            AnchorPane a = FXMLLoader.load(getClass().getResource("/javafxmvc/view/FXMLRelatorioFluxoProduto.fxml"));
+            this.anchorPane.getChildren().setAll(a);
+        }
     }
 
     @FXML
@@ -113,6 +118,14 @@ public class ControllerMenuPrincipal {
         AnchorPane a = FXMLLoader.load(getClass().getResource("/javafxmvc/view/FXMLMenuUsuario.fxml"));
         this.anchorPane.getChildren().setAll(a);
     }
+
+    @FXML
+    public void encerrarSessao(){
+        ControllerMenuPrincipal.usuario = null;
+        this.loginController = new ControllerLogin();
+        this.loginController.launchLoginController(this.stage);
+    }
+
 
     @FXML
     public void cadastrarProduto() throws IOException {
@@ -124,7 +137,11 @@ public class ControllerMenuPrincipal {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, produto, "cadastrar");
             if (confirmacao) {
                 this.produtoDAO.setConnection(this.connection);
-                this.produtoDAO.inserir(produto);
+                if(!this.produtoDAO.inserir(produto)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível cadastrar o produto!");
+                    alert.showAndWait();
+                }
             }
         }
     }
@@ -139,7 +156,11 @@ public class ControllerMenuPrincipal {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, marca, "cadastrar");
             if (confirmacao) {
                 this.marcaDAO.setConnection(this.connection);
-                this.marcaDAO.inserir(marca);
+                if(!this.marcaDAO.inserir(marca)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível inserir a marca!");
+                    alert.showAndWait();
+                }
             }
         }
     }
@@ -154,7 +175,11 @@ public class ControllerMenuPrincipal {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, funcionario, "cadastrar");
             if (confirmacao) {
                 this.funcionarioDAO.setConnection(this.connection);
-                this.funcionarioDAO.inserir(funcionario);
+                if(!this.funcionarioDAO.inserir(funcionario)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível inserir o funcionário!");
+                    alert.showAndWait();
+                }
             }
         }
     }

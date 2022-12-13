@@ -2,6 +2,7 @@ package javafxmvc.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafxmvc.MainApplication;
@@ -53,7 +54,11 @@ public class ControllerMenuUsuario implements Initializable {
         boolean confirmacao = MainApplication.showArquivoXML(path, titulo, this.usuario, "alterarUsuario");
         if (confirmacao) {
             this.funcionarioDAO.setConnection(this.connection);
-            this.funcionarioDAO.alterarUsuario(this.usuario);
+            if(!this.funcionarioDAO.alterarUsuario(this.usuario)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Não foi possível alterar o usuário!");
+                alert.showAndWait();
+            }
         }
     }
 
@@ -65,7 +70,11 @@ public class ControllerMenuUsuario implements Initializable {
         boolean confirmacao = MainApplication.showArquivoXML(path, titulo, this.usuario, "alterarSenha");
         if (confirmacao) {
             this.funcionarioDAO.setConnection(this.connection);
-            this.funcionarioDAO.alterarSenha(this.usuario);
+            if(!this.funcionarioDAO.alterarSenha(this.usuario)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Não foi possível alterar a senha!");
+                alert.showAndWait();
+            }
             this.usuario.setSenha(null);
         }
 

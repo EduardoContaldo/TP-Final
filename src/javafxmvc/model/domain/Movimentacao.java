@@ -3,22 +3,13 @@ package javafxmvc.model.domain;
 import java.sql.Date;
 
 public class Movimentacao {
-    private int idFuncionario;
     private int idProduto;
     private int quantidade;
     private String data;
     private int tipoMovimentacao;
-    private String nomeFuncionario;
     private String nomeProduto;
     private String nomeMarca;
 
-    public int getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
 
     public int getIdProduto() {
         return idProduto;
@@ -50,14 +41,6 @@ public class Movimentacao {
 
     public void setTipoMovimentacao(int tipoMovimentacao) {
         this.tipoMovimentacao = tipoMovimentacao;
-    }
-
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
-    }
-
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
     }
 
     public String getNomeProduto() {

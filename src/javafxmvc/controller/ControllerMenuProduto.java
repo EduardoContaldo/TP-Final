@@ -91,7 +91,15 @@ public class ControllerMenuProduto implements Initializable {
                 Optional<ButtonType> resultado = alert.showAndWait();
 
                 if(resultado.get() == ButtonType.OK) {
-                    produtoDAO.remover(produto);
+                    this.movimentacaoDAO.setConnection(this.connection);
+                    if(this.movimentacaoDAO.remover(produto)) {
+                        if (!this.produtoDAO.remover(produto)) {
+                            alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erro na Exclusão");
+                            alert.setContentText("Não foi possível excluir o produto!");
+                            alert.show();
+                        }
+                    }
                     carregarTableViewProduto();
                 }
             }
@@ -108,7 +116,11 @@ public class ControllerMenuProduto implements Initializable {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, produto, "alterar");
             if (confirmacao) {
                 this.produtoDAO.setConnection(this.connection);
-                this.produtoDAO.alterar(produto);
+                if(!this.produtoDAO.alterar(produto)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível alterar o produto!");
+                    alert.showAndWait();
+                }
                 carregarTableViewProduto();
             }
         }
@@ -129,7 +141,6 @@ public class ControllerMenuProduto implements Initializable {
                 tipoMovimentacao = 1;
 
             Movimentacao movimentacao = new Movimentacao();
-            movimentacao.setIdFuncionario(ControllerMenuPrincipal.usuario.getIdFuncionario());
             movimentacao.setIdProduto(produto.getIdProduto());
             movimentacao.setQuantidade(produto.getNovaQuantidade());
             movimentacao.setTipoMovimentacao(tipoMovimentacao);
@@ -138,7 +149,11 @@ public class ControllerMenuProduto implements Initializable {
             this.movimentacaoDAO.setConnection(this.connection);
 
             this.produtoDAO.alterarQuantidade(produto);
-            this.movimentacaoDAO.inserir(movimentacao);
+            if(!this.movimentacaoDAO.inserir(movimentacao)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Não foi possível inserir o produto!");
+                alert.showAndWait();
+            }
 
             carregarTableViewProduto();
         }

@@ -69,14 +69,14 @@ public class ControllerMenuMarca implements Initializable {
         if(ControllerMenuPrincipal.usuario.getIdFuncao() == 1 || ControllerMenuPrincipal.usuario.getIdFuncao() == 2) {
             Marca marca = this.tableViewMarcas.getSelectionModel().getSelectedItem();
             if (marca != null) {
-                Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-                confirmacao.setTitle("Confirmar Exclusão");
-                confirmacao.setContentText("Deseja confirmar a exclusão dessa marca?");
-                Optional<ButtonType> resultado = confirmacao.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmar Exclusão");
+                alert.setContentText("Deseja confirmar a exclusão dessa marca?");
+                Optional<ButtonType> resultado = alert.showAndWait();
 
                 if(resultado.get() == ButtonType.OK) {
                     if(!marcaDAO.remover(marca)){
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Problema de Exclusão");
                         alert.setContentText("Não foi possível excluir a marca pois existem produtos pertencentes a ela no sistema!");
                         alert.show();
@@ -97,9 +97,14 @@ public class ControllerMenuMarca implements Initializable {
             boolean confirmacao = MainApplication.showArquivoXML(path, titulo, marca, "alterar");
             if (confirmacao) {
                 this.marcaDAO.setConnection(this.connection);
-                this.marcaDAO.alterar(marca);
+                if(!this.marcaDAO.alterar(marca)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Não foi possível alterar a marca!");
+                    alert.showAndWait();
+                }
                 carregarTableViewMarca();
             }
         }
     }
+
 }

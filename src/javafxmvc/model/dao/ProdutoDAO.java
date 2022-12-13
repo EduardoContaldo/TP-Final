@@ -1,5 +1,6 @@
 package javafxmvc.model.dao;
 
+import javafx.scene.control.Alert;
 import javafxmvc.model.domain.Produto;
 
 import java.sql.Connection;
@@ -29,6 +30,7 @@ public class ProdutoDAO {
             stmt.execute();
             return true;
         } catch (SQLException e) {
+
             return false;
         }
     }
@@ -36,7 +38,7 @@ public class ProdutoDAO {
     public boolean alterar(Produto produto) {
         String sql = "UPDATE produto SET nome_produto=?, valor=?, id_marca=? WHERE id_produto=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
             stmt.setDouble(2, produto.getValor());
             stmt.setInt(3, produto.getIdMarca());
@@ -44,6 +46,7 @@ public class ProdutoDAO {
             stmt.execute();
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -51,12 +54,13 @@ public class ProdutoDAO {
     public boolean alterarQuantidade(Produto produto) {
         String sql = "UPDATE produto SET quantidade=? WHERE id_produto=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, produto.getQuantidade());
             stmt.setDouble(2, produto.getIdProduto());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -64,11 +68,12 @@ public class ProdutoDAO {
     public boolean remover(Produto produto) {
         String sql = "DELETE FROM produto WHERE id_produto=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
             stmt.setInt(1, produto.getIdProduto());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
+
             return false;
         }
     }
@@ -78,7 +83,7 @@ public class ProdutoDAO {
         List<Produto> retorno = new ArrayList<>();
 
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Produto produto = new Produto();
@@ -91,7 +96,7 @@ public class ProdutoDAO {
                 retorno.add(produto);
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao listar produtos");
+
         }
         return retorno;
     }
@@ -100,7 +105,7 @@ public class ProdutoDAO {
         String query = "SELECT id_produto, nome_produto, p.id_marca, valor, quantidade, nome_marca FROM produto as p inner join marca as m on p.id_marca = m.id_marca WHERE id_produto=?";
         Produto retorno = new Produto();
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setInt(1, produto.getIdProduto());
             ResultSet resultado = stmt.executeQuery();
             if (resultado.next()) {
@@ -113,7 +118,7 @@ public class ProdutoDAO {
                 retorno = produto;
             }
         } catch (SQLException ex) {
-            System.out.println("Produto não encontrado");
+
         }
         return retorno;
     }
@@ -121,7 +126,7 @@ public class ProdutoDAO {
     public boolean verificarProduto(Produto produto){
         String query = "SELECT COUNT(nome_produto) AS confirmar FROM produto WHERE nome_produto=? AND id_marca=?";
         try {
-            PreparedStatement stmt = connection.prepareStatement(query);
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             stmt.setString(1, produto.getNomeProduto());
             stmt.setInt(2, produto.getIdMarca());
             ResultSet resultado = stmt.executeQuery();

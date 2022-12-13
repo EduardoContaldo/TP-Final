@@ -35,7 +35,7 @@
             <Menu mnemonicParsing="false" text="Usuário">
                <items>
                   <MenuItem fx:id="alterarUsuario" mnemonicParsing="false" onAction="#exibirMenuUsuario" text="Alterar" />
-                  <MenuItem fx:id="logoff" mnemonicParsing="false" onAction="#exibirRelatorioFluxoProduto" text="Sair" />
+                  <MenuItem fx:id="logoff" mnemonicParsing="false" onAction="#encerrarSessao" text="Sair" />
                </items></Menu>
         </menus>
       </MenuBar>
