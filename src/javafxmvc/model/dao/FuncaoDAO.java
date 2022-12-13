@@ -1,6 +1,5 @@
 package javafxmvc.model.dao;
 
-import javafx.scene.control.Alert;
 import javafxmvc.model.domain.Funcao;
 
 import java.sql.Connection;

@@ -1,8 +1,6 @@
 package javafxmvc.model.domain;
 
-import java.io.Serializable;
-
-public class Produto implements Serializable {
+public class Produto {
 
     private int idProduto;
     private String nomeProduto;

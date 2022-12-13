@@ -12,15 +12,11 @@ import javafx.stage.Stage;
 import javafxmvc.model.dao.MarcaDAO;
 import javafxmvc.model.dao.ProdutoDAO;
 import javafxmvc.model.database.DatabaseMySQL;
-import javafxmvc.model.domain.Funcionario;
 import javafxmvc.model.domain.Marca;
 import javafxmvc.model.domain.Produto;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;

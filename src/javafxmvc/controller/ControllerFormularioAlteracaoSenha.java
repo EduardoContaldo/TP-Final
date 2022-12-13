@@ -10,7 +10,6 @@ import javafxmvc.model.domain.Funcionario;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerFormularioAlteracaoSenha implements Initializable {

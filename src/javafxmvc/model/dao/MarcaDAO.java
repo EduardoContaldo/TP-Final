@@ -1,8 +1,6 @@
 package javafxmvc.model.dao;
 
-import javafx.scene.control.Alert;
 import javafxmvc.model.domain.Marca;
-import javafxmvc.model.domain.Produto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

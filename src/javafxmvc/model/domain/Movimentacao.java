@@ -1,7 +1,5 @@
 package javafxmvc.model.domain;
 
-import java.sql.Date;
-
 public class Movimentacao {
     private int idProduto;
     private int quantidade;

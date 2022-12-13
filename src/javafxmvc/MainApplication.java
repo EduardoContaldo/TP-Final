@@ -19,7 +19,7 @@ public class MainApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         ControllerLogin loginController = new ControllerLogin();
         loginController.launchLoginController(stage);
     }
